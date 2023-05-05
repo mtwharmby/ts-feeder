@@ -1,18 +1,24 @@
 import requests
 
 
-def send_data(server, measurement, fields, timestamp=None, tags=None):
+def send_http(server, measurement, fields, timestamp=None, tags=None):
     """
-    Sends one or more fields associated with a measurement (e.g. sensor) to a timeseries database
+    Sends one or more measurement (e.g. sensor) fields to a timeseries database
 
-    Measurement might be a sensor which can return multiple values (e.g. temperature, pressure & humidity).
-    Having a separate fields argument, allows all these values to be written at once.
+    Measurement might be a sensor which can return multiple values (e.g.
+    temperature, pressure & humidity). Having a separate fields argument,
+    allows all these values to be written at once.
 
-    server - String URL where the listener which feeds data to the timeseries DB is located.
-    measurement - String name of the sensor
-    fields - Dictionary of named measurement type and value
-    timestamp - (optional) int time when measurment was made (UNIX time, nanoseconds)
-    tags - (optional) Dictionary of keys & values to help sort/locate/organise fields
+    Parameters
+    --
+    server: String -  URL where the listener which feeds data to the
+                      timeseries DB is located.
+    measurement: String - Name of the sensor
+    fields: dict - Dictionary of named measurement type and value
+    timestamp: int - (optional) time when measurment was made (UNIX time,
+                     nanoseconds)
+    tags:dict - (optional) Dictionary of keys & values to help
+                sort/locate/organise fields
     """
     if not isinstance(fields, dict):
         raise RuntimeError("fields must be a dictionary")
