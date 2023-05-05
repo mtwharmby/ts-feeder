@@ -26,4 +26,3 @@ class POSTHandler(BaseHTTPRequestHandler):
 
 with HTTPServer(("", 8000), POSTHandler) as server:
     server.serve_forever()
-
